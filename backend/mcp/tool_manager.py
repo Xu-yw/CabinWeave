@@ -8,6 +8,7 @@
      再合并去重，解决"召回不全"问题。
   2. 结果重排（Reranking）—— 对召回结果用 LLM 打分，按相关性重新排序，
      解决"召回不好/排序差"问题。
+     改写和重排都关闭思考模式，max_tokens 取不开思考所需的三倍，以后打开思考也有余量。
   3. 熔断器（Circuit Breaker）—— 连续失败超阈值时自动断开，防止雪崩。
   4. 结果缓存（TTL Cache）—— 相同参数直接返回缓存，减少重复调用。
   5. 降级策略（Fallback）—— 工具不可用时返回有意义的降级结果。
@@ -297,7 +298,7 @@ class MCPToolManager:
         prompt = self._clean_text(prompt)
         try:
             resp = await self._client.messages.create(
-                model=self._model, max_tokens=512, temperature=0.3,
+                model=self._model, max_tokens=1536, temperature=0.3,
                 messages=[{"role": "user", "content": prompt}],
                 extra_body=THINKING_DISABLED,
             )
@@ -376,7 +377,7 @@ class MCPToolManager:
 
         try:
             resp = await self._client.messages.create(
-                model=self._model, max_tokens=512, temperature=0.0,
+                model=self._model, max_tokens=1536, temperature=0.0,
                 messages=[{"role": "user", "content": prompt}],
                 extra_body=THINKING_DISABLED,
             )

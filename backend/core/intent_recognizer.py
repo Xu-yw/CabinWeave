@@ -7,7 +7,8 @@ CabinWeave 车载意图识别器：关键词层 + LLM 层分层识别
      - 紧急短语表（高精度）命中 → 直接判为 emergency_sos，不调用 LLM；
      - 意图词表（含同义词和常见同音错字）按命中数给出候选意图；
      - 按标点和连接词分句，片段落在 2 个以上意图时标记多意图，并生成候选子任务。
-  3. LLM 层：prompt 含意图定义、边界规则、每类 2 条示例、最近 3 条历史；关闭思考模式，
+  3. LLM 层：prompt 含意图定义、边界规则、每类 2 条示例、最近 3 条历史；关闭思考模式
+     （max_tokens 取不开思考所需的三倍，以后打开思考也有余量），
      模型以文本 JSON 输出 intent / reasoning / sub_tasks / execution；超时默认 5 秒。
   4. 决策：紧急短语 > LLM > 关键词兜底。置信度按两层是否一致给出
      （一致 high、不一致 medium、LLM 判为 other 为 low、只有关键词为 low、都没有为 none），
@@ -905,7 +906,7 @@ class IntentRecognizer:
         """调用 LLM 识别意图；任何异常都算失败，超时单独标记为 timeout。"""
         request: Dict[str, Any] = {
             "model": self.model,
-            "max_tokens": 512,
+            "max_tokens": 1536,
             "temperature": 0.1,
             "extra_body": THINKING_DISABLED,  # 只输出一个短 JSON，不需要思考过程
             "system": self._system_prompt,

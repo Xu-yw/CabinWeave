@@ -2,7 +2,8 @@
 CabinWeave 驾驶员偏好测试：normalize_driver_profile 的规整规则（合法值、类型错误、
 notes 去重和上限、敏感号码）、merge_driver_profile 的合并、给模型看的偏好不含 places、
 上下文的"[驾驶员偏好]"标签和可读中文、偏好提炼 prompt 的内容，以及 update_profile 用假客户端和假存储
-走完"提炼 → 规整 → 合并 → 存库"、get_profile 读出时同样规整。
+走完"提炼 → 规整 → 合并 → 存库"、get_profile 读出时同样规整；偏好提炼、对话摘要、摘要合并关闭思考，
+摘要输出被 max_tokens 截断时走兜底。
 
 全部用假数据，不连接 Redis、ChromaDB，不调用真实模型；MemoryManager 用 __new__ 创建后手动装上假依赖。
 """
@@ -249,7 +250,7 @@ class FakeProfileStore:
 
 
 class ScriptedClient:
-    """按顺序返回预设文本的假客户端，记录每次调用参数。"""
+    """按顺序返回预设文本（或完整响应对象）的假客户端，记录每次调用参数。"""
 
     def __init__(self, *texts):
         self.texts = list(texts)
@@ -259,9 +260,20 @@ class ScriptedClient:
         class Messages:
             async def create(inner, **kwargs):
                 client.calls.append(kwargs)
-                return SimpleNamespace(content=[{"type": "text", "text": client.texts.pop(0)}])
+                item = client.texts.pop(0)
+                if isinstance(item, SimpleNamespace):
+                    return item
+                return SimpleNamespace(content=[{"type": "text", "text": item}])
 
         self.messages = Messages()
+
+
+def truncated(text):
+    """输出达到 max_tokens 被截断的响应。"""
+    return SimpleNamespace(content=[{"type": "text", "text": text}], stop_reason="max_tokens")
+
+
+THINKING_OFF = {"thinking": {"type": "disabled"}}
 
 
 def make_manager(messages, client, store):
@@ -295,6 +307,8 @@ def test_update_profile_sends_new_prompt_and_stores_normalized_merged_profile():
     client = ScriptedClient(reply)
     asyncio.run(make_manager(DIALOGUE, client, store).update_profile("u1", "c1"))
 
+    assert client.calls[0]["extra_body"] == THINKING_OFF
+    assert client.calls[0]["max_tokens"] == 1536
     prompt = client.calls[0]["messages"][0]["content"]
     assert "驾驶员偏好" in prompt and "一次性指令" in prompt and "places" in prompt
     assert "user: 我一般开22度，这次先调到26度" in prompt
@@ -341,3 +355,66 @@ def test_get_profile_normalizes_stored_documents():
     })
     manager = make_manager([], ScriptedClient(), store)
     assert asyncio.run(manager.get_profile("u2")) == {"preferences": {"music": ["轻音乐"]}}
+
+
+# ── 摘要（关闭思考、截断兜底）──────────────────────────────────────────────────
+
+def test_merge_summary_disables_thinking_and_falls_back_when_truncated():
+    client = ScriptedClient("合并后的摘要", truncated("合并后的摘"))
+    manager = make_manager([], client, FakeProfileStore())
+
+    assert asyncio.run(manager._merge_summary("旧摘要", "新摘要")) == "合并后的摘要"
+    assert client.calls[0]["extra_body"] == THINKING_OFF
+    assert client.calls[0]["max_tokens"] == 768
+
+    # 输出被截断：不用半截结果，回退为旧摘要 + 新摘要
+    assert asyncio.run(manager._merge_summary("旧摘要", "新摘要")) == "旧摘要\n新摘要"
+
+
+class SummaryRedis:
+    """压缩用到的 get / setex / delete / lpush / expire，记录写入的摘要和保留的消息。"""
+
+    def __init__(self):
+        self.summary = None
+        self.pushed = []
+
+    async def get(self, key):
+        return None
+
+    async def setex(self, key, ttl, value):
+        self.summary = value
+
+    async def delete(self, key):
+        self.pushed.clear()
+
+    async def lpush(self, key, value):
+        self.pushed.append(value)
+
+    async def expire(self, key, ttl):
+        pass
+
+
+def test_compress_disables_thinking_and_uses_fallback_summary_when_truncated():
+    client = ScriptedClient(truncated("驾驶员想去"))
+    manager = make_manager([], client, FakeProfileStore())
+    manager._redis = SummaryRedis()
+    messages = [Message(MsgRole.USER, f"第{i}条") for i in range(MemoryManager.COMPRESS_AT)]
+    episodic = []
+
+    async def working_memory(user_id, conv_id):
+        return messages
+
+    async def store_episodic(user_id, conv_id, text, summary):
+        episodic.append(summary)
+
+    manager._get_working_memory = working_memory
+    manager._store_episodic = store_episodic
+    asyncio.run(manager._compress("u1", "c1"))
+
+    assert client.calls[0]["extra_body"] == THINKING_OFF
+    assert client.calls[0]["max_tokens"] == 768
+    fallback = f"对话包含 {MemoryManager.COMPRESS_AT - 5} 条消息（摘要生成失败）"
+    assert episodic == [fallback]
+    assert manager._redis.summary == fallback  # 没有旧摘要时直接用新摘要，不再调模型合并
+    assert len(client.calls) == 1
+    assert len(manager._redis.pushed) == 5

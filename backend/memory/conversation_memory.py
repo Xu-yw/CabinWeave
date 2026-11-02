@@ -9,6 +9,8 @@ CabinWeave 多轮对话记忆
 关键设计：
   - 上下文构建时三级记忆融合，按重要性 + 时效性排序
   - 工作记忆超过阈值时自动压缩（LLM 摘要），防止 context 爆炸
+  - 摘要、摘要合并、偏好提炼的模型调用都关闭思考模式（思考的 token 也计入 max_tokens，会挤掉正文）；
+    max_tokens 按不开思考所需的三倍设置，以后打开思考也有余量；摘要输出被截断时不用半截结果，走兜底
   - Embedding 由 ChromaDB 内置模型生成，不调用外部 Embedding API
   - chromadb、redis 在 MemoryManager 构造时才导入，偏好规整、上下文格式化等纯函数不依赖它们
 
@@ -44,7 +46,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from anthropic import AsyncAnthropic
 
-from core.llm_utils import extract_text_content
+from core.llm_utils import THINKING_DISABLED, extract_text_content
 from vehicle.safety import TEMP_RANGE
 from vehicle.state import DRIVE_MODES
 
@@ -347,8 +349,9 @@ class MemoryManager:
 
         try:
             resp = await self._client.messages.create(
-                model=self._model, max_tokens=512, temperature=0.0,
+                model=self._model, max_tokens=1536, temperature=0.0,
                 messages=[{"role": "user", "content": prompt}],
+                extra_body=THINKING_DISABLED,
             )
             raw = extract_text_content(resp.content)
             s, e = raw.find("{"), raw.rfind("}") + 1
@@ -435,13 +438,20 @@ class MemoryManager:
         # LLM 摘要
         text = self._safe_text("\n".join(f"{m.role.value}: {m.content}" for m in to_compress))
         prompt = self._safe_text(f"用 2-3 句话总结以下对话的关键信息：\n{text}")
+        summary = ""
         try:
             resp = await self._client.messages.create(
-                model=self._model, max_tokens=256, temperature=0.0,
+                model=self._model, max_tokens=768, temperature=0.0,
                 messages=[{"role": "user", "content": prompt}],
+                extra_body=THINKING_DISABLED,
             )
-            summary = self._safe_text(extract_text_content(resp.content)).strip()
+            if getattr(resp, "stop_reason", None) == "max_tokens":
+                logger.warning("对话摘要输出被 max_tokens 截断，改用兜底摘要")
+            else:
+                summary = self._safe_text(extract_text_content(resp.content)).strip()
         except Exception:
+            pass
+        if not summary:
             summary = f"对话包含 {len(to_compress)} 条消息（摘要生成失败）"
 
         # 存摘要到 Redis
@@ -629,12 +639,15 @@ class MemoryManager:
         try:
             resp = await self._client.messages.create(
                 model=self._model,
-                max_tokens=256,
+                max_tokens=768,
                 temperature=0.0,
                 messages=[{"role": "user", "content": prompt}],
+                extra_body=THINKING_DISABLED,
             )
             merged = self._safe_text(extract_text_content(resp.content)).strip()
-            if merged:
+            if getattr(resp, "stop_reason", None) == "max_tokens":
+                logger.warning("合并摘要输出被 max_tokens 截断，回退为截断拼接")
+            elif merged:
                 return merged[: self.SUMMARY_MAX_CHARS]
         except Exception as ex:
             logger.warning(f"合并摘要失败，回退为截断拼接: {ex}")

@@ -39,18 +39,19 @@ CabinWeave 车载多 Agent 路由与编排
   - 状态变化汇总：工具返回 changes 时并入 state_changes，返回 blocked 时并入 blocked_actions，
     安全节点和快速通道的车辆操作同样汇总；角色失败时保留它失败前已产生的变化
 
-思考模式：车控、导航、座舱助手关闭（请求带 thinking: disabled），用车顾问保留。
+思考模式：车控、导航、座舱助手和汇总节点关闭（请求带 thinking: disabled），用车顾问保留。
+关闭思考的调用 max_tokens 取不开思考所需的三倍，以后打开思考也有余量。
 
 汇总分级（只有一个角色时直接返回它的回复，不经过汇总节点）：
   - 参与汇总的子任务全是执行类 → 模板拼接，不调模型
   - 含问答类 → 调模型合并成不超过 3 句的播报
-  - 模型失败 → 按顺序确定性拼接
+  - 模型失败或输出被 max_tokens 截断 → 按顺序确定性拼接
   - 失败的角色不交给模型改写，失败短句按顺序接在成功部分后面
 
 环境变量：
   CABINWEAVE_FAST_PATH                 快速通道开关 on / off，默认 on（见 core/fast_path.py）
   CABINWEAVE_{AGENT_TYPE 大写}_MODEL   按角色覆盖模型，如 CABINWEAVE_CABIN_MODEL、CABINWEAVE_ADVISOR_MODEL
-  CABINWEAVE_COMPOSER_MAX_TOKENS       汇总节点 max_tokens，默认 400
+  CABINWEAVE_COMPOSER_MAX_TOKENS       汇总节点 max_tokens，默认 1200（不开思考所需的三倍，以后打开思考也有余量）
   CABINWEAVE_COMPOSER_TEMPERATURE      汇总节点温度，默认 0.1
   CABINWEAVE_TOOL_TRACE_MAX            内存中保留的请求级工具调用记录条数，默认 200
 """
@@ -657,7 +658,7 @@ class VehicleControlAgent(BaseAgent):
         output_contract=("一句话播报执行结果", "被拒绝或被调整时说明原因", "缺参数时只追问一个"),
         tool_scope=("set_climate", "set_body", "set_lighting", "set_drive_mode"),
         temperature=0.0,
-        max_tokens=400,
+        max_tokens=1200,
         thinking=False,
     )
     system_prompt = (
@@ -683,7 +684,7 @@ class NavigationAgent(BaseAgent):
         output_contract=("播报目的地、路线或候选地点", "多候选时只播报前 3 个并请驾驶员选择", "目的地不明确时只追问一个"),
         tool_scope=("search_poi", "plan_route", "get_route_status"),
         temperature=0.1,
-        max_tokens=500,
+        max_tokens=1500,
         thinking=False,
     )
     system_prompt = (
@@ -733,7 +734,7 @@ class CabinAgent(BaseAgent):
         output_contract=("简短口语化回复", "做不到的操作如实说明", "听不明白时只追问一个"),
         tool_scope=("control_media", "set_volume", "make_call", "get_weather", "suggest_required_fields"),
         temperature=0.4,
-        max_tokens=400,
+        max_tokens=1200,
         thinking=False,
     )
     system_prompt = (
@@ -897,7 +898,7 @@ def _join_sentences(parts: Iterable[str]) -> str:
 
 class ResponseComposer:
     """
-    多 Agent 汇总节点：成功的部分执行类模板拼接、含问答类调模型合并、模型失败时确定性拼接；
+    多 Agent 汇总节点：成功的部分执行类模板拼接、含问答类调模型合并、模型失败或输出被截断时确定性拼接；
     失败的角色不交给模型改写，失败短句按顺序接在后面。
     """
 
@@ -930,12 +931,17 @@ class ResponseComposer:
         try:
             response = await self._client.messages.create(
                 model=self._model,
-                max_tokens=_env_int("CABINWEAVE_COMPOSER_MAX_TOKENS", 400),
+                max_tokens=_env_int("CABINWEAVE_COMPOSER_MAX_TOKENS", 1200),
                 temperature=_env_float("CABINWEAVE_COMPOSER_TEMPERATURE", 0.1),
                 messages=[{"role": "user", "content": self._build_prompt(req, successful)}],
+                # 只做合并改写，不需要思考；思考的 token 也计入 max_tokens，开着会把正文挤到截断
+                extra_body=THINKING_DISABLED,
             )
             content = extract_text_content(response.content).strip()
-            if content:
+            if getattr(response, "stop_reason", None) == "max_tokens":
+                # 被截断的正文可能停在半句，不如按顺序拼接
+                logger.warning("汇总节点输出达到 max_tokens 被截断，使用确定性拼接")
+            elif content:
                 return content
         except Exception as ex:
             logger.warning("汇总节点调用模型失败，使用确定性拼接: %s", ex)

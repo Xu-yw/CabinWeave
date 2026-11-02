@@ -262,7 +262,7 @@ def test_llm_request_uses_text_json_output():
     call = client.calls[0]
     assert "tools" not in call and "tool_choice" not in call
     assert call["temperature"] == 0.1
-    assert call["max_tokens"] == 512
+    assert call["max_tokens"] == 1536
     assert call["extra_body"] == {"thinking": {"type": "disabled"}}  # 关闭思考模式
     assert "只输出一个 JSON 对象" in call["system"]
     assert "空挑调到二十二度" in call["system"]  # few-shot 示例确实拼进了 prompt

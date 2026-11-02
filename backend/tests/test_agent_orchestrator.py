@@ -210,10 +210,10 @@ def test_llm_agent_profiles_are_distinct_and_match_design():
     assert len({profile.workflow for profile in profiles}) == 4
     assert len({cls.system_prompt for cls in LLM_AGENTS}) == 4
 
-    assert (VehicleControlAgent.profile.temperature, VehicleControlAgent.profile.max_tokens) == (0.0, 400)
-    assert (NavigationAgent.profile.temperature, NavigationAgent.profile.max_tokens) == (0.1, 500)
+    assert (VehicleControlAgent.profile.temperature, VehicleControlAgent.profile.max_tokens) == (0.0, 1200)
+    assert (NavigationAgent.profile.temperature, NavigationAgent.profile.max_tokens) == (0.1, 1500)
     assert (AdvisorAgent.profile.temperature, AdvisorAgent.profile.max_tokens) == (0.1, 700)
-    assert (CabinAgent.profile.temperature, CabinAgent.profile.max_tokens) == (0.4, 400)
+    assert (CabinAgent.profile.temperature, CabinAgent.profile.max_tokens) == (0.4, 1200)
 
     assert set(VehicleControlAgent.profile.tool_scope) == {
         "set_climate", "set_body", "set_lighting", "set_drive_mode",
@@ -1122,8 +1122,9 @@ def test_composer_calls_model_when_question_results_present(monkeypatch):
     assert content == "电量还剩八成，周杰伦的歌也放上了。"
     assert len(client.calls) == 1
     call = client.calls[0]
-    assert call["max_tokens"] == 400
+    assert call["max_tokens"] == 1200
     assert call["temperature"] == 0.1
+    assert call["extra_body"] == {"thinking": {"type": "disabled"}}  # 只做合并改写，关闭思考
     prompt = call["messages"][0]["content"]
     assert "不超过 3 句" in prompt
     assert "Markdown" in prompt
@@ -1155,6 +1156,21 @@ def test_composer_fallback_joins_in_order_without_labels():
     assert content == "电量还剩80%，能跑400公里。好的，正在播放周杰伦的歌。"
     assert "补充说明" not in content
     assert "\n" not in content
+
+
+def test_composer_truncated_output_falls_back_to_join():
+    # 输出达到 max_tokens 时正文停在半句，不用它，改为按顺序拼接
+    truncated = SimpleNamespace(
+        content=[{"type": "text", "text": "已开始导航到上海虹桥站。主驾座椅加热已开到"}], stop_reason="max_tokens",
+    )
+    composer = ResponseComposer(ScriptedClient(truncated), "test-model")
+    responses = [
+        execution_response(AgentType.VEHICLE_CONTROL, "好的，主驾座椅加热已开到2档。"),
+        execution_response(AgentType.NAVIGATION, "已开始导航到上海虹桥站，预计30分钟。", C.NAVIGATION),
+    ]
+    content = asyncio.run(composer.compose(make_request("打开主驾座椅加热，再导航去虹桥火车站"), responses))
+
+    assert content == "好的，主驾座椅加热已开到2档。已开始导航到上海虹桥站，预计30分钟。"
 
 
 def test_composer_all_failed_and_partial_failure():

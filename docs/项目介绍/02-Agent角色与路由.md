@@ -16,16 +16,16 @@ result = await orchestrator.run(Request(message, user_id, conv_id, context=..., 
 
 | AgentType | 角色 | 职责 | 工具白名单（tool_scope） | 温度 / max_tokens |
 |---|---|---|---|---|
-| vehicle_control | 车控 | 解析控制对象、动作、参数和音区，调用控制工具，按工具结果播报 | set_climate、set_body、set_lighting、set_drive_mode | 0.0 / 400 |
-| navigation | 导航 | 确认目的地或类别，检索地点或规划路线，多候选时播报前 3 个 | search_poi、plan_route、get_route_status | 0.1 / 500 |
+| vehicle_control | 车控 | 解析控制对象、动作、参数和音区，调用控制工具，按工具结果播报 | set_climate、set_body、set_lighting、set_drive_mode | 0.0 / 1200 |
+| navigation | 导航 | 确认目的地或类别，检索地点或规划路线，多候选时播报前 3 个 | search_poi、plan_route、get_route_status | 0.1 / 1500 |
 | advisor | 用车顾问 | 区分车况、故障、知识类问题，按严重度给建议 | lookup_warning、estimate_range、search_knowledge_base | 0.1 / 700 |
-| cabin | 座舱助手 | 影音、电话、天气、闲聊、追问澄清 | control_media、set_volume、make_call、get_weather、suggest_required_fields | 0.4 / 400 |
+| cabin | 座舱助手 | 影音、电话、天气、闲聊、追问澄清 | control_media、set_volume、make_call、get_weather、suggest_required_fields | 0.4 / 1200 |
 | safety | 安全节点 | 不调模型：紧急求助、道路救援 | — | — |
 
 - 每个 LLM 角色有自己的 system prompt 和角色契约（职责、流程、输入、输出、可用工具）。
 - 所有 LLM 角色统一追加播报要求：一般不超过 2 句、口语化、不用列表和 Markdown；执行结果以工具返回为准，被拒绝就说明原因；缺关键信息时只追问一个；只处理分给自己的任务；不声称执行了没有工具结果支撑的操作。
 - 按角色配模型：`CABINWEAVE_{AGENT_TYPE 大写}_MODEL`，例如座舱助手配快模型、用车顾问配强模型。
-- 思考模式：车控、导航、座舱助手关闭（请求经 `extra_body` 带 `thinking: disabled`，常量 `THINKING_DISABLED` 在 `core/llm_utils.py`），用车顾问保留。意图识别和汇总节点不受影响。手册检索的查询改写和重排同样关闭（见 [记忆、知识库与 Skills](06-记忆知识库Skills.md)）。
+- 思考模式：车控、导航、座舱助手和汇总节点关闭（请求经 `extra_body` 带 `thinking: disabled`，常量 `THINKING_DISABLED` 在 `core/llm_utils.py`），用车顾问保留。意图识别、手册检索的查询改写和重排、记忆的摘要和偏好提炼同样关闭（见 [意图识别](01-意图识别.md)、[记忆、知识库与 Skills](06-记忆知识库Skills.md)）。思考的 token 也计入 `max_tokens`，开着时会把正文挤到截断；关闭思考的调用 `max_tokens` 都取不开思考所需的三倍，以后打开思考也有余量。
 
 ## 3. 工具白名单
 
@@ -115,8 +115,8 @@ result = await orchestrator.run(Request(message, user_id, conv_id, context=..., 
 | 情况 | 处理 |
 |---|---|
 | 参与汇总的子任务全是执行类（climate_control、body_control、drive_setting、media_control、phone_call） | 模板拼接，不调模型：第一条原样保留，后面每条去掉开头的"好的"再接上 |
-| 含问答类结果 | 调模型合并：不超过 3 句、口语化、不提 Agent；执行结果以工具为准，被拒绝的操作不能说成已完成；安全信息放最前 |
-| 模型调用失败 | 按顺序直接拼接，缺句末标点时补句号 |
+| 含问答类结果 | 调模型合并（关闭思考模式）：不超过 3 句、口语化、不提 Agent；执行结果以工具为准，被拒绝的操作不能说成已完成；安全信息放最前 |
+| 模型调用失败，或输出达到 max_tokens 被截断 | 按顺序直接拼接，缺句末标点时补句号；截断的正文可能停在半句，不采用 |
 | 有 Agent 失败 | 成功的部分按上面处理，失败短句按顺序接在后面，不交给模型改写；全部失败时只播失败短句，相同的只播一次。例如"好的，空调已调到22度。影音操作失败，请手动操作或稍后重试。" |
 
 ## 9. 输出结构
@@ -140,7 +140,7 @@ result = await orchestrator.run(Request(message, user_id, conv_id, context=..., 
 | 环境变量 | 默认值 | 说明 |
 |---|---|---|
 | CABINWEAVE_{AGENT_TYPE 大写}_MODEL | 空（沿用全局模型） | 按角色覆盖模型，安全节点不读 |
-| CABINWEAVE_COMPOSER_MAX_TOKENS | 400 | 汇总节点 max_tokens |
+| CABINWEAVE_COMPOSER_MAX_TOKENS | 1200 | 汇总节点 max_tokens，取不开思考所需的三倍，以后打开思考也有余量 |
 | CABINWEAVE_COMPOSER_TEMPERATURE | 0.1 | 汇总节点温度 |
 | CABINWEAVE_TOOL_TRACE_MAX | 200 | 内存中保留的工具调用记录条数 |
 
