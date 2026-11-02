@@ -1,0 +1,31 @@
+# 凭据与本地配置
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# 依赖、缓存与构建产物
+.venv/
+venv/
+node_modules/
+dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+# 运行数据和离线评测输出
+data/
+logs/
+*.log
+*.sqlite3
+backend/evaluation/结果/
+# 车辆用户手册：版权归车企，只在本地使用，目录里只提交 README.md 和抓取脚本
+backend/manuals/*
+!backend/manuals/README.md
+!backend/manuals/fetch_manuals.py
+# 本机编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

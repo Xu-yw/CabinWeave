@@ -1,0 +1,5590 @@
+{
+  "generated_at": "2026-11-02T09:58:38+08:00",
+  "dataset": {
+    "path": "backend/evaluation/意图样本.json",
+    "sha256": "ed1344dda1034ccf7667dd73ab54f697e4a4e3912bd3d0f106ec008258cd946e",
+    "total": 58,
+    "multi": 10,
+    "fast_path": 11
+  },
+  "config": {
+    "repeats": 3,
+    "intent_model": "deepseek-flash",
+    "model": "deepseek-flash",
+    "intent_timeout_s": 5.0,
+    "e2_scenario": "parked"
+  },
+  "git": {
+    "commit": "f5362af2ac9a65b969900ff4abf304cb98eeccd1",
+    "dirty": false
+  },
+  "e1": {
+    "keyword_only": {
+      "summary": {
+        "intent_accuracy": 0.7931,
+        "multi_match": 0.7,
+        "latency": {
+          "p50_ms": 0.18,
+          "p95_ms": 0.31,
+          "count": 58
+        },
+        "repeats": 1,
+        "llm_failures": 0,
+        "per_run": [
+          {
+            "intent_accuracy": 0.7931,
+            "multi_match": 0.7
+          }
+        ],
+        "intent_errors": [
+          {
+            "id": "S15",
+            "text": "转向调成运动手感",
+            "expected": "drive_setting",
+            "predicted": [
+              "other"
+            ]
+          },
+          {
+            "id": "S22",
+            "text": "找个评分高的川菜馆",
+            "expected": "poi_search",
+            "predicted": [
+              "other"
+            ]
+          },
+          {
+            "id": "S23",
+            "text": "还能开多少公里",
+            "expected": "vehicle_status",
+            "predicted": [
+              "other"
+            ]
+          },
+          {
+            "id": "S24",
+            "text": "车窗是不是都关好了",
+            "expected": "vehicle_status",
+            "predicted": [
+              "body_control"
+            ]
+          },
+          {
+            "id": "S25",
+            "text": "空调现在开着吗",
+            "expected": "vehicle_status",
+            "predicted": [
+              "climate_control"
+            ]
+          },
+          {
+            "id": "S26",
+            "text": "空调不制冷了",
+            "expected": "fault_diagnosis",
+            "predicted": [
+              "climate_control"
+            ]
+          },
+          {
+            "id": "S29",
+            "text": "家里的充电桩怎么申请安装",
+            "expected": "manual_qa",
+            "predicted": [
+              "poi_search"
+            ]
+          },
+          {
+            "id": "S30",
+            "text": "车道居中辅助是干什么用的",
+            "expected": "manual_qa",
+            "predicted": [
+              "drive_setting"
+            ]
+          },
+          {
+            "id": "S31",
+            "text": "万一车着火了应该怎么办",
+            "expected": "manual_qa",
+            "predicted": [
+              "emergency_sos"
+            ]
+          },
+          {
+            "id": "S38",
+            "text": "给我妈发个微信说快到家了",
+            "expected": "phone_call",
+            "predicted": [
+              "other"
+            ]
+          },
+          {
+            "id": "S40",
+            "text": "差点追尾了，吓死我了",
+            "expected": "chitchat",
+            "predicted": [
+              "emergency_sos"
+            ]
+          },
+          {
+            "id": "S48",
+            "text": "车子打不着火了，需要拖车",
+            "expected": "roadside_assist",
+            "predicted": [
+              "emergency_sos"
+            ]
+          }
+        ],
+        "multi_errors": [
+          {
+            "id": "S51",
+            "text": "搜一下附近的充电站，然后导航过去",
+            "expected": {
+              "intents": [
+                "navigation",
+                "poi_search"
+              ],
+              "execution": "sequential"
+            },
+            "predicted": [
+              {
+                "intents": [
+                  "navigation",
+                  "poi_search"
+                ],
+                "execution": "parallel"
+              }
+            ]
+          },
+          {
+            "id": "S54",
+            "text": "先看看胎压正不正常，有问题就帮我找个修理厂",
+            "expected": {
+              "intents": [
+                "poi_search",
+                "vehicle_status"
+              ],
+              "execution": "sequential"
+            },
+            "predicted": [
+              {
+                "intents": [
+                  "poi_search",
+                  "vehicle_status"
+                ],
+                "execution": "parallel"
+              }
+            ]
+          },
+          {
+            "id": "S58",
+            "text": "查一下电量，够的话去最近的商场，再放点轻音乐",
+            "expected": {
+              "intents": [
+                "media_control",
+                "poi_search",
+                "vehicle_status"
+              ],
+              "execution": "sequential"
+            },
+            "predicted": [
+              {
+                "intents": [
+                  "media_control",
+                  "poi_search",
+                  "vehicle_status"
+                ],
+                "execution": "parallel"
+              }
+            ]
+          }
+        ]
+      },
+      "runs": [
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.18,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.2,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.21,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.17,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.18,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S15": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.17,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.17,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S22": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S23": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1.8,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S24": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S25": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S26": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.22,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S29": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.21,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S30": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.2,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S31": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.22,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.19,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.14,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.19,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.25,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S38": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.2,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.2,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S40": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.31,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.18,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.17,
+            "decided_by": "none",
+            "llm_status": "skipped"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.23,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.17,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.15,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.16,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S48": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.25,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.23,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.24,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.23,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.3,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.33,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.31,
+            "decided_by": "keyword_fallback",
+            "llm_status": "skipped"
+          }
+        }
+      ]
+    },
+    "llm_only": {
+      "summary": {
+        "intent_accuracy": 0.9943,
+        "multi_match": 0.9,
+        "latency": {
+          "p50_ms": 869.37,
+          "p95_ms": 1314.95,
+          "count": 174
+        },
+        "repeats": 3,
+        "llm_failures": 0,
+        "per_run": [
+          {
+            "intent_accuracy": 0.9828,
+            "multi_match": 0.9
+          },
+          {
+            "intent_accuracy": 1.0,
+            "multi_match": 0.9
+          },
+          {
+            "intent_accuracy": 1.0,
+            "multi_match": 0.9
+          }
+        ],
+        "intent_errors": [
+          {
+            "id": "S25",
+            "text": "空调现在开着吗",
+            "expected": "vehicle_status",
+            "predicted": [
+              "climate_control",
+              "vehicle_status",
+              "vehicle_status"
+            ]
+          }
+        ],
+        "multi_errors": [
+          {
+            "id": "S58",
+            "text": "查一下电量，够的话去最近的商场，再放点轻音乐",
+            "expected": {
+              "intents": [
+                "media_control",
+                "poi_search",
+                "vehicle_status"
+              ],
+              "execution": "sequential"
+            },
+            "predicted": [
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              }
+            ]
+          }
+        ]
+      },
+      "runs": [
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1323.45,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 938.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 816.02,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 875.84,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 691.54,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1065.17,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 689.05,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 895.62,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 662.83,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 837.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 927.4,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1095.13,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 640.99,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 652.17,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 881.19,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 890.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 866.4,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 604.69,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 493.23,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 725.24,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 734.56,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 670.39,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 530.71,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1099.38,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 737.05,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 804.08,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 783.75,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 900.56,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 694.32,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1032.66,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1040.94,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 689.41,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 888.78,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1129.96,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 774.28,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 828.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 912.25,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 4031.28,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1130.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1008.99,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1716.71,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1459.13,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1393.37,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1059.64,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1201.73,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 948.52,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1102.01,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 960.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1362.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1035.17,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1230.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1057.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 920.34,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1203.86,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 673.29,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 661.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1076.55,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 833.33,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        },
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1016.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 865.39,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 860.36,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1003.49,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 833.36,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1008.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 863.9,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 973.56,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 964.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 801.74,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 693.41,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 938.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 874.51,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1559.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1138.98,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 675.37,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 706.62,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 726.99,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 792.48,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 869.37,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 980.9,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 639.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 682.25,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 862.34,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 849.48,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 866.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1014.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 986.11,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 587.87,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1032.44,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 889.47,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1076.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 812.45,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1097.64,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 646.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 798.95,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 895.33,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 943.46,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 677.73,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 937.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 903.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 874.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1124.01,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 757.03,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 851.75,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 859.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1213.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1350.34,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 836.26,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 853.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 713.46,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 925.1,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1132.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1089.06,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 976.65,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1249.66,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 834.84,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1314.95,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        },
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 733.73,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 927.69,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 654.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 745.23,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 855.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 922.48,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1009.0,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 580.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 836.63,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 659.66,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 680.1,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 731.96,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1019.59,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 602.23,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 879.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 905.97,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 764.59,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 721.64,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 762.83,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 897.82,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 892.29,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 836.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1051.64,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 738.8,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 929.45,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 899.32,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 931.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 744.54,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 675.8,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 703.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 835.4,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 670.51,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 760.82,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 743.42,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 952.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 779.19,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 673.21,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 679.34,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 892.9,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 793.79,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 651.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 599.52,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 738.67,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 797.25,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 885.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1006.5,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1058.03,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 840.9,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1171.87,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 781.04,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 634.62,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 938.74,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 880.04,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1038.47,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 841.79,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 937.8,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 846.21,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 981.8,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        }
+      ]
+    },
+    "layered": {
+      "summary": {
+        "intent_accuracy": 0.9828,
+        "multi_match": 0.9,
+        "latency": {
+          "p50_ms": 839.63,
+          "p95_ms": 1192.8,
+          "count": 174
+        },
+        "repeats": 3,
+        "llm_failures": 0,
+        "per_run": [
+          {
+            "intent_accuracy": 0.9828,
+            "multi_match": 0.9
+          },
+          {
+            "intent_accuracy": 0.9828,
+            "multi_match": 0.9
+          },
+          {
+            "intent_accuracy": 0.9828,
+            "multi_match": 0.9
+          }
+        ],
+        "intent_errors": [
+          {
+            "id": "S25",
+            "text": "空调现在开着吗",
+            "expected": "vehicle_status",
+            "predicted": [
+              "climate_control",
+              "climate_control",
+              "climate_control"
+            ]
+          }
+        ],
+        "multi_errors": [
+          {
+            "id": "S58",
+            "text": "查一下电量，够的话去最近的商场，再放点轻音乐",
+            "expected": {
+              "intents": [
+                "media_control",
+                "poi_search",
+                "vehicle_status"
+              ],
+              "execution": "sequential"
+            },
+            "predicted": [
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "intents": [
+                  "media_control",
+                  "navigation",
+                  "vehicle_status"
+                ],
+                "execution": "sequential"
+              }
+            ]
+          }
+        ]
+      },
+      "runs": [
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1096.71,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 655.62,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 977.02,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 863.44,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 711.6,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 629.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1272.1,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 857.07,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 968.97,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 842.92,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 850.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 810.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 806.47,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 655.87,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 983.38,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 722.86,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 965.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 879.07,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 864.02,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 603.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 948.52,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 951.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 881.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 730.32,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 874.21,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 932.42,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 928.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 477.31,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 779.74,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 930.49,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 946.02,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 710.32,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 714.66,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 774.94,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 660.59,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 662.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 980.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 963.61,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 906.58,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1005.17,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1183.29,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 709.97,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.41,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.64,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.49,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.41,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1407.99,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 936.31,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1064.83,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 995.67,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1200.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1011.86,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1096.98,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1102.85,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 747.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 764.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 927.19,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1090.84,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        },
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 965.81,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 862.69,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 839.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 849.82,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 866.53,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 880.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 576.11,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 929.25,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 822.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 677.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 868.18,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 576.65,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 614.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 803.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 721.3,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1091.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 776.74,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 571.05,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 652.96,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 551.89,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 593.0,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 839.63,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 813.29,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 932.14,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 631.5,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 843.56,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 890.85,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 932.25,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 914.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 902.46,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1134.38,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 938.69,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 772.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 754.88,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 622.83,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 944.06,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 487.34,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1035.89,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 799.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1045.3,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 863.19,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 897.55,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.44,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1.03,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.39,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.29,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 773.84,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 765.32,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1062.54,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 890.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1038.6,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 689.3,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 825.38,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1090.61,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 706.59,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 977.04,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1011.07,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1254.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        },
+        {
+          "S01": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 794.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S02": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 729.01,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S03": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 851.72,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S04": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 653.62,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S05": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 898.83,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S06": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 712.31,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S07": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 877.05,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S08": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 769.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S09": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 668.61,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S10": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 655.35,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S11": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 623.29,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S12": {
+            "intent": "body_control",
+            "intents": [
+              "body_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 623.18,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S13": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 575.16,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S14": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 646.68,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S15": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting"
+            ],
+            "execution": "parallel",
+            "latency_ms": 826.75,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S16": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 838.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S17": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 566.58,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S18": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 493.86,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S19": {
+            "intent": "navigation",
+            "intents": [
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 740.2,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S20": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1228.44,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S21": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1029.01,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S22": {
+            "intent": "poi_search",
+            "intents": [
+              "poi_search"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1437.53,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S23": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 792.74,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S24": {
+            "intent": "vehicle_status",
+            "intents": [
+              "vehicle_status"
+            ],
+            "execution": "parallel",
+            "latency_ms": 524.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S25": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 750.99,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S26": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 691.81,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S27": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 531.27,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S28": {
+            "intent": "fault_diagnosis",
+            "intents": [
+              "fault_diagnosis"
+            ],
+            "execution": "parallel",
+            "latency_ms": 554.28,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S29": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 852.94,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S30": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 928.7,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S31": {
+            "intent": "manual_qa",
+            "intents": [
+              "manual_qa"
+            ],
+            "execution": "parallel",
+            "latency_ms": 563.08,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S32": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 680.6,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S33": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 854.53,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S34": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 559.09,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S35": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 914.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S36": {
+            "intent": "media_control",
+            "intents": [
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 907.81,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S37": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 860.65,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S38": {
+            "intent": "phone_call",
+            "intents": [
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1404.49,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S39": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 933.15,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S40": {
+            "intent": "chitchat",
+            "intents": [
+              "chitchat"
+            ],
+            "execution": "parallel",
+            "latency_ms": 682.57,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S41": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1187.77,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S42": {
+            "intent": "other",
+            "intents": [
+              "other"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1155.78,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S43": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.46,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S44": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.29,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S45": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.25,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S46": {
+            "intent": "emergency_sos",
+            "intents": [
+              "emergency_sos"
+            ],
+            "execution": "parallel",
+            "latency_ms": 0.29,
+            "decided_by": "emergency_rule",
+            "llm_status": "skipped"
+          },
+          "S47": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 473.65,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S48": {
+            "intent": "roadside_assist",
+            "intents": [
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 715.5,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S49": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "navigation"
+            ],
+            "execution": "parallel",
+            "latency_ms": 702.3,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S50": {
+            "intent": "body_control",
+            "intents": [
+              "body_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 861.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S51": {
+            "intent": "poi_search",
+            "intents": [
+              "navigation",
+              "poi_search"
+            ],
+            "execution": "sequential",
+            "latency_ms": 996.67,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S52": {
+            "intent": "climate_control",
+            "intents": [
+              "climate_control",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 921.22,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S53": {
+            "intent": "roadside_assist",
+            "intents": [
+              "body_control",
+              "roadside_assist"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1130.48,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S54": {
+            "intent": "vehicle_status",
+            "intents": [
+              "poi_search",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 766.91,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S55": {
+            "intent": "drive_setting",
+            "intents": [
+              "drive_setting",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 965.54,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S56": {
+            "intent": "climate_control",
+            "intents": [
+              "body_control",
+              "climate_control",
+              "media_control"
+            ],
+            "execution": "parallel",
+            "latency_ms": 987.38,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S57": {
+            "intent": "navigation",
+            "intents": [
+              "climate_control",
+              "navigation",
+              "phone_call"
+            ],
+            "execution": "parallel",
+            "latency_ms": 1192.8,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          },
+          "S58": {
+            "intent": "vehicle_status",
+            "intents": [
+              "media_control",
+              "navigation",
+              "vehicle_status"
+            ],
+            "execution": "sequential",
+            "latency_ms": 1237.12,
+            "decided_by": "llm",
+            "llm_status": "ok"
+          }
+        }
+      ]
+    }
+  },
+  "e2": {
+    "intent": {
+      "off": {
+        "intent_accuracy": 0.9828
+      },
+      "on": {
+        "intent_accuracy": 0.9828
+      },
+      "coverage": 1.0,
+      "false_trigger": 0.0,
+      "fast_path_samples": 11,
+      "missed": [],
+      "false_hits": [],
+      "hits": {
+        "S01": "F02",
+        "S02": "F01",
+        "S03": "F07",
+        "S07": "F10",
+        "S08": "F09",
+        "S09": "F12",
+        "S10": "F09",
+        "S32": "F15",
+        "S33": "F16",
+        "S34": "F17",
+        "S35": "F15"
+      }
+    },
+    "end_to_end": {
+      "samples": 11,
+      "repeats": 3,
+      "scenario": "parked",
+      "on": {
+        "p50_ms": 0.31,
+        "p95_ms": 0.99,
+        "count": 33
+      },
+      "off": {
+        "p50_ms": 2306.59,
+        "p95_ms": 3227.82,
+        "count": 33
+      },
+      "on_fast_ratio": 1.0,
+      "state_consistency": 1.0,
+      "inconsistent": [],
+      "records": [
+        {
+          "id": "S01",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 3472.46,
+          "response": "空调已经是24度了，我顺手把空调打开了。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S01",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F02",
+          "intent": "climate_control",
+          "latency_ms": 0.31,
+          "response": "好的，空调已调到24度。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2465.9,
+          "response": "空调本来就是关着的，不用再关啦。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F01",
+          "intent": "climate_control",
+          "latency_ms": 0.27,
+          "response": "好的，空调已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2546.03,
+          "response": "好的，副驾座椅加热已开到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F07",
+          "intent": "climate_control",
+          "latency_ms": 0.41,
+          "response": "好的，副驾座椅加热已调到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2267.54,
+          "response": "好的，天窗已打开。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F10",
+          "intent": "body_control",
+          "latency_ms": 0.28,
+          "response": "好的，天窗已打开。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2898.87,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.35,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2001.91,
+          "response": "车门已经是锁好的了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F12",
+          "intent": "body_control",
+          "latency_ms": 0.32,
+          "response": "好的，车门已上锁。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2642.35,
+          "response": "所有车窗本来就是关着的，不用再关。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.22,
+          "response": "好的，所有车窗已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2060.48,
+          "response": "已切到下一首，开始播放了。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.35,
+          "response": "好的，已切到下一首。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2022.01,
+          "response": "音量已经调到12了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F16",
+          "intent": "media_control",
+          "latency_ms": 0.37,
+          "response": "好的，音量已调到12。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2306.59,
+          "response": "音量已经调到15了。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F17",
+          "intent": "media_control",
+          "latency_ms": 0.41,
+          "response": "好的，音量已调到15。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 1,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2059.19,
+          "response": "当前没有在播放的内容，已经是暂停状态了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 1,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.33,
+          "response": "好的，已暂停播放。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S01",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 1932.28,
+          "response": "空调已经打开了，温度是24度。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S01",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F02",
+          "intent": "climate_control",
+          "latency_ms": 0.29,
+          "response": "好的，空调已调到24度。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2017.34,
+          "response": "空调本来就是关着的，不用再关啦。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F01",
+          "intent": "climate_control",
+          "latency_ms": 0.4,
+          "response": "好的，空调已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2568.52,
+          "response": "好的，副驾座椅加热已开到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F07",
+          "intent": "climate_control",
+          "latency_ms": 0.3,
+          "response": "好的，副驾座椅加热已调到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 1775.9,
+          "response": "好的，天窗已经打开了。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F10",
+          "intent": "body_control",
+          "latency_ms": 0.28,
+          "response": "好的，天窗已打开。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2707.97,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.3,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 1953.65,
+          "response": "车门已经是锁好的了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F12",
+          "intent": "body_control",
+          "latency_ms": 0.31,
+          "response": "好的，车门已上锁。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2940.61,
+          "response": "所有车窗本来就是关着的。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.3,
+          "response": "好的，所有车窗已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2153.56,
+          "response": "已经切到下一首了，不过现在没有拿到曲名信息。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.35,
+          "response": "好的，已切到下一首。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2710.25,
+          "response": "音量已经调到12了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F16",
+          "intent": "media_control",
+          "latency_ms": 0.24,
+          "response": "好的，音量已调到12。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2328.51,
+          "response": "音量已经调到 15 了。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F17",
+          "intent": "media_control",
+          "latency_ms": 0.83,
+          "response": "好的，音量已调到15。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 2,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2037.25,
+          "response": "已经暂停了，当前没有在播放的内容。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 2,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.36,
+          "response": "好的，已暂停播放。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S01",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2320.78,
+          "response": "空调已经打开了，温度是24度。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S01",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F02",
+          "intent": "climate_control",
+          "latency_ms": 0.29,
+          "response": "好的，空调已调到24度。",
+          "state_changes": [
+            {
+              "field": "climate.on",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2085.32,
+          "response": "空调本来就是关着的，不用再关啦。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S02",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F01",
+          "intent": "climate_control",
+          "latency_ms": 0.25,
+          "response": "好的，空调已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "climate_control",
+          "latency_ms": 2656.38,
+          "response": "好的，副驾座椅加热已开到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S03",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F07",
+          "intent": "climate_control",
+          "latency_ms": 0.31,
+          "response": "好的，副驾座椅加热已调到2档。",
+          "state_changes": [
+            {
+              "field": "seats.seat_heat.passenger",
+              "old": 0,
+              "new": 2
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2429.53,
+          "response": "好的，天窗已经打开了。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S07",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F10",
+          "intent": "body_control",
+          "latency_ms": 0.27,
+          "response": "好的，天窗已打开。",
+          "state_changes": [
+            {
+              "field": "body.sunroof",
+              "old": 0,
+              "new": 100
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2800.26,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S08",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.3,
+          "response": "好的，主驾车窗已开到30%。",
+          "state_changes": [
+            {
+              "field": "body.windows.fl",
+              "old": 0,
+              "new": 30
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 3227.82,
+          "response": "车门已经是锁好的了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S09",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F12",
+          "intent": "body_control",
+          "latency_ms": 0.99,
+          "response": "好的，车门已上锁。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "body_control",
+          "latency_ms": 2070.73,
+          "response": "所有车窗本来就是关着的，不用再关。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S10",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F09",
+          "intent": "body_control",
+          "latency_ms": 0.29,
+          "response": "好的，所有车窗已关闭。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 3103.51,
+          "response": "已切到下一首，现在开始播放了。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S32",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.46,
+          "response": "好的，已切到下一首。",
+          "state_changes": [
+            {
+              "field": "media.playing",
+              "old": false,
+              "new": true
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2227.96,
+          "response": "音量已经调到12了。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S33",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F16",
+          "intent": "media_control",
+          "latency_ms": 1.29,
+          "response": "好的，音量已调到12。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 1837.63,
+          "response": "音量已经调到15了。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S34",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F17",
+          "intent": "media_control",
+          "latency_ms": 0.41,
+          "response": "好的，音量已调到15。",
+          "state_changes": [
+            {
+              "field": "media.volume",
+              "old": 12,
+              "new": 15
+            }
+          ],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 3,
+          "mode": "off",
+          "route": "slow",
+          "fast_rule": null,
+          "intent": "media_control",
+          "latency_ms": 2257.05,
+          "response": "已经暂停了，现在没有在播放的内容。",
+          "state_changes": [],
+          "blocked_actions": []
+        },
+        {
+          "id": "S35",
+          "repeat": 3,
+          "mode": "on",
+          "route": "fast",
+          "fast_rule": "F15",
+          "intent": "media_control",
+          "latency_ms": 0.34,
+          "response": "好的，已暂停播放。",
+          "state_changes": [],
+          "blocked_actions": []
+        }
+      ]
+    }
+  }
+}

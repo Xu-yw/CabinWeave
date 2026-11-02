@@ -1,0 +1,74 @@
+[
+  {"id": "S01", "text": "温度调到24度", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S02", "text": "帮我把空调关了吧", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S03", "text": "打开副驾座椅加热", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S04", "text": "后排太热了，冷气开大点", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S05", "text": "坐椅加热开一下", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "同音错字：坐椅 → 座椅"},
+  {"id": "S06", "text": "车里温度有点高", "intent": "climate_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "抱怨冷热视为调温诉求；没有明确的调节动作，不应走快速通道"},
+
+  {"id": "S07", "text": "打开天窗", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S08", "text": "主驾车窗开到30%", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S09", "text": "锁一下车门", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S10", "text": "关闭所有车窗", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S11", "text": "把后视镜折起来", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S12", "text": "雨刮开快一点", "intent": "body_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S13", "text": "切换到经济模式", "intent": "drive_setting", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S14", "text": "把车道保持关掉", "intent": "drive_setting", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S15", "text": "转向调成运动手感", "intent": "drive_setting", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S16", "text": "导航去虹桥火车站", "intent": "navigation", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S17", "text": "回公司", "intent": "navigation", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S18", "text": "避开高速重新规划路线", "intent": "navigation", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S19", "text": "前面堵不堵", "intent": "navigation", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "问路况属于导航"},
+
+  {"id": "S20", "text": "附近哪有停车场", "intent": "poi_search", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S21", "text": "带我去最近的超充站", "intent": "poi_search", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "按类别找地点，即使带\"去\"也算 poi_search"},
+  {"id": "S22", "text": "找个评分高的川菜馆", "intent": "poi_search", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S23", "text": "还能开多少公里", "intent": "vehicle_status", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S24", "text": "车窗是不是都关好了", "intent": "vehicle_status", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "问门窗状态，不是车窗操作"},
+  {"id": "S25", "text": "空调现在开着吗", "intent": "vehicle_status", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "问空调状态，不是打开空调"},
+
+  {"id": "S26", "text": "空调不制冷了", "intent": "fault_diagnosis", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "本车异常现象算故障诊断，不是调空调"},
+  {"id": "S27", "text": "仪表上有个红色的电池图标亮了", "intent": "fault_diagnosis", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S28", "text": "刹车的时候有咯吱咯吱的响声", "intent": "fault_diagnosis", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S29", "text": "家里的充电桩怎么申请安装", "intent": "manual_qa", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S30", "text": "车道居中辅助是干什么用的", "intent": "manual_qa", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "问功能用途，不是开关驾驶辅助"},
+  {"id": "S31", "text": "万一车着火了应该怎么办", "intent": "manual_qa", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "假设问句，问的是应对知识，不是正在发生的紧急情况"},
+
+  {"id": "S32", "text": "下一首", "intent": "media_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S33", "text": "音量调到12", "intent": "media_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S34", "text": "声音大点", "intent": "media_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S35", "text": "暂停", "intent": "media_control", "sub_tasks": [], "execution": "parallel", "fast_path": true, "note": ""},
+  {"id": "S36", "text": "放一首邓紫棋的歌", "intent": "media_control", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S37", "text": "打电话给小王", "intent": "phone_call", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S38", "text": "给我妈发个微信说快到家了", "intent": "phone_call", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S39", "text": "今天天气怎么样", "intent": "chitchat", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S40", "text": "差点追尾了，吓死我了", "intent": "chitchat", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "没有发生事故，是情绪表达，不是紧急求助"},
+
+  {"id": "S41", "text": "帮我点一份外卖", "intent": "other", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "超出车载助手能力范围"},
+  {"id": "S42", "text": "那个……就刚才那个", "intent": "other", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": "缺上下文，判断不出诉求"},
+
+  {"id": "S43", "text": "我们撞车了，后排孩子一直在哭", "intent": "emergency_sos", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S44", "text": "司机突然胸口疼得厉害", "intent": "emergency_sos", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S45", "text": "车头冒烟了", "intent": "emergency_sos", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S46", "text": "有人被车门夹伤流血了", "intent": "emergency_sos", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S47", "text": "车没电了开不动了", "intent": "roadside_assist", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S48", "text": "车子打不着火了，需要拖车", "intent": "roadside_assist", "sub_tasks": [], "execution": "parallel", "fast_path": false, "note": ""},
+
+  {"id": "S49", "text": "打开座椅加热，顺便导航回家", "intent": "climate_control", "sub_tasks": [{"intent": "climate_control", "text": "打开座椅加热"}, {"intent": "navigation", "text": "顺便导航回家"}], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S50", "text": "把车窗关上，再放点音乐", "intent": "body_control", "sub_tasks": [{"intent": "body_control", "text": "把车窗关上"}, {"intent": "media_control", "text": "再放点音乐"}], "execution": "parallel", "fast_path": false, "note": "\"再\"只是先后说出，两件事互不依赖"},
+  {"id": "S51", "text": "搜一下附近的充电站，然后导航过去", "intent": "poi_search", "sub_tasks": [{"intent": "poi_search", "text": "搜一下附近的充电站"}, {"intent": "navigation", "text": "然后导航过去"}], "execution": "sequential", "fast_path": false, "note": "导航目的地依赖搜索结果"},
+  {"id": "S52", "text": "空调调到20度，给老张打个电话", "intent": "climate_control", "sub_tasks": [{"intent": "climate_control", "text": "空调调到20度"}, {"intent": "phone_call", "text": "给老张打个电话"}], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S53", "text": "先把双闪打开，车子抛锚了动不了", "intent": "roadside_assist", "sub_tasks": [{"intent": "body_control", "text": "先把双闪打开"}, {"intent": "roadside_assist", "text": "车子抛锚了动不了"}], "execution": "parallel", "fast_path": false, "note": "安全类优先作主意图"},
+  {"id": "S54", "text": "先看看胎压正不正常，有问题就帮我找个修理厂", "intent": "vehicle_status", "sub_tasks": [{"intent": "vehicle_status", "text": "先看看胎压正不正常"}, {"intent": "poi_search", "text": "有问题就帮我找个修理厂"}], "execution": "sequential", "fast_path": false, "note": "找修理厂取决于胎压查询结果"},
+  {"id": "S55", "text": "切到舒适模式，音量小一点", "intent": "drive_setting", "sub_tasks": [{"intent": "drive_setting", "text": "切到舒适模式"}, {"intent": "media_control", "text": "音量小一点"}], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S56", "text": "打开空调，关上天窗，再放首陈奕迅的歌", "intent": "climate_control", "sub_tasks": [{"intent": "climate_control", "text": "打开空调"}, {"intent": "body_control", "text": "关上天窗"}, {"intent": "media_control", "text": "再放首陈奕迅的歌"}], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S57", "text": "导航去公司，路上给王总发消息说我晚到十分钟，再把座椅通风打开", "intent": "navigation", "sub_tasks": [{"intent": "navigation", "text": "导航去公司"}, {"intent": "phone_call", "text": "路上给王总发消息说我晚到十分钟"}, {"intent": "climate_control", "text": "再把座椅通风打开"}], "execution": "parallel", "fast_path": false, "note": ""},
+  {"id": "S58", "text": "查一下电量，够的话去最近的商场，再放点轻音乐", "intent": "vehicle_status", "sub_tasks": [{"intent": "vehicle_status", "text": "查一下电量"}, {"intent": "poi_search", "text": "够的话去最近的商场"}, {"intent": "media_control", "text": "再放点轻音乐"}], "execution": "sequential", "fast_path": false, "note": "去商场取决于电量查询结果"}
+]

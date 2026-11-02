@@ -1,0 +1,34 @@
+.git
+.gitignore
+.idea
+.venv
+__pycache__
+*.py[cod]
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+.DS_Store
+*.log
+logs/
+
+.env
+.env.*
+!.env.example
+
+data/chroma/
+data/**/*.sqlite3
+data/.DS_Store
+
+config/grafana/
+config/nginx/ssl/
+
+# 评测的每次运行结果不进镜像；正式报告 evaluation/报告/ 保留，供 GET /eval/report 读取。
+evaluation/结果/
+
+# 本机运行数据不进入镜像。
+data/
+
+# 车辆用户手册由 docker compose 只读挂载到 /app/manuals，不打进镜像。
+manuals/
