@@ -91,7 +91,7 @@ CLI 进程和 HTTP 服务各有一份车辆状态，互不影响。
   - 监控与日志
 
   可选项默认注释掉，因为部分配置留空值时会被当成空路径，或解析失败。
-- **前端**：运行时配置变量为 `window.__CABINWEAVE_CONFIG__`，localStorage 键为 `cabinweave.frontend.settings`；界面见 [前端](09-前端.md)。
+- **前端**：运行时配置变量为 `window.__CABINWEAVE_CONFIG__`；localStorage 键为 `cabinweave.frontend.settings`（用户与会话 ID）、`cabinweave.frontend.trace`（链路追踪栏展开状态）、`cabinweave.frontend.speak`（播报所有回复）；界面见 [前端](09-前端.md)。
 
 ## 5. 已知局限
 

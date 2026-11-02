@@ -1,4 +1,4 @@
-// 界面上的中文名与取值格式：意图、Agent、快速通道规则、工具、车辆状态字段、识别决策层等。
+// 界面上的中文名与取值格式：意图、Agent、快速通道规则、工具、车辆状态字段、识别决策层、场景说明等。
 
 export const INTENT_LABELS = {
   climate_control: '空调温控',
@@ -97,6 +97,14 @@ export function formatValue(field, value) {
   if (field === 'navigation.eta_min') return `${value} 分钟`
   if (typeof value === 'boolean') return value ? '是' : '否'
   return String(value)
+}
+
+/** 场景预设的说明：把后端返回的 overrides 展开成"车速 110 km/h，档位 D"这样的一句话 */
+export function describeScenario(overrides) {
+  const flatten = (obj, prefix = '') => Object.entries(obj || {}).flatMap(([key, value]) =>
+    value && typeof value === 'object' && !Array.isArray(value) ? flatten(value, `${prefix}${key}.`) : [[`${prefix}${key}`, value]])
+  const items = flatten(overrides)
+  return items.length ? items.map(([field, value]) => `${fieldLabel(field)} ${formatValue(field, value)}`).join('，') : '默认状态'
 }
 
 export function formatMs(ms) {

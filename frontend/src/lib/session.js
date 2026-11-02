@@ -69,9 +69,10 @@ export async function loadCockpit() {
   }
 }
 
+/** 发送一句指令；成功时返回助手回复这条消息，失败或忽略时返回 null */
 export async function sendMessage(text) {
   const message = text.trim()
-  if (!message || session.busy) return
+  if (!message || session.busy) return null
   session.messages.push({ id: nextId(), role: 'user', text: message })
   session.busy = true
   try {
@@ -88,8 +89,10 @@ export async function sendMessage(text) {
     session.vehicle = data.vehicle_state
     highlight(data.state_changes)
     loadToolCalls(reply)
+    return reply
   } catch (error) {
     session.messages.push({ id: nextId(), role: 'assistant', text: error.message, error: true })
+    return null
   } finally {
     session.busy = false
   }

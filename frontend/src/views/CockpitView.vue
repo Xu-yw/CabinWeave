@@ -11,7 +11,7 @@
     <ChatPanel />
 
     <TracePanel v-if="showTrace" @collapse="toggle(false)" />
-    <button v-else class="trace-tab" title="展开链路追踪" @click="toggle(true)"><AppIcon name="panel" />链路追踪</button>
+    <button v-else class="trace-tab" aria-label="展开链路追踪" @click="toggle(true)"><AppIcon name="panel-open" />链路追踪</button>
   </main>
 </template>
 
@@ -57,13 +57,11 @@ function toggle(value) {
 
 .placeholder { align-items: center; justify-content: center; gap: 10px; padding: 24px; }
 .trace-tab { writing-mode: vertical-rl; align-self: start; border-radius: 12px; padding: 14px 8px; color: var(--ink-2); }
-.trace-tab .app-icon { transform: rotate(90deg); }
 
 @media (max-width: 1100px) {
   .cockpit, .cockpit.trace-hidden { grid-template-columns: 1fr; overflow: visible; height: auto; }
   .cockpit > * { min-height: auto; }
   .cockpit :deep(.chat) { height: 78vh; }
   .trace-tab { writing-mode: horizontal-tb; justify-self: start; }
-  .trace-tab .app-icon { transform: none; }
 }
 </style>
