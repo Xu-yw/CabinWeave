@@ -13,7 +13,7 @@ FastAPI 后端：意图识别与多意图拆分、5 个角色的路由与执行�
 | memory | Redis 工作记忆、ChromaDB 情景记忆与驾驶员偏好 |
 | mcp | 手册知识库（knowledge_base.py）与工具执行管理 |
 | monitor | 运行指标、告警与快慢通道统计 |
-| manuals | 车辆用户手册目录（只提交 README 和抓取脚本） |
+| manuals | 车辆用户手册（官网公开页面） |
 | skills | 4 份角色专属 Skill |
 | evaluation | 意图识别评测（样本、评测脚本、正式报告） |
 | tests | 单元测试（假客户端，不调用真实模型） |

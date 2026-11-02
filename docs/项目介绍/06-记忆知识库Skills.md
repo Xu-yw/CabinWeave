@@ -3,7 +3,7 @@
 代码：
 - `backend/memory/conversation_memory.py`：驾驶员偏好的提炼、规整、合并。
 - `backend/mcp/knowledge_base.py`：手册同步、切块、检索。
-- `backend/manuals/`：本地手册目录，包含 README.md 和抓取脚本 `fetch_manuals.py`。
+- `backend/manuals/`：手册文件和来源说明。
 - `backend/skills/`：4 份角色专属 Skill。
 - `backend/agents/agent_orchestrator.py`、`backend/agents/tools.py`、`backend/api/main.py`：接入。
 
@@ -79,20 +79,11 @@
 
 共 11 个文件，切成约 90 个片段。这些页面不含仪表指示灯、辅助驾驶、空调等操作说明，故障灯由故障灯表回答（见 [工具](04-工具.md) 第 6 节）。
 
-页面版权归理想汽车，抓取结果只放在本地：
-- `backend/manuals/` 下只有 README.md 和 `fetch_manuals.py` 进 git，其余文件都被 `.gitignore` 忽略。
-- `.dockerignore` 也排除了这个目录，Docker 里以只读方式挂载到 `/app/manuals`。
+页面版权归理想汽车，每个文件开头注明来源地址和抓取日期：
+- `.dockerignore` 排除了这个目录，Docker 里以只读方式挂载到 `/app/manuals`。
 - 目录位置可用 `CABINWEAVE_MANUALS_DIR` 覆盖。
 
-### 2.2 抓取
-
-`python manuals/fetch_manuals.py` 只用标准库，流程如下：
-1. 抓取上述 15 个页面，只取正文区域 `div#article`。
-2. h1–h4 转成二级标题，丢掉图片和脚本。
-3. 三款车型正文相同（车型名替换后一致）的页面合并成一份。
-4. 每个文件开头注明来源地址、抓取日期和版权说明。
-
-### 2.3 同步
+### 2.2 同步
 
 后端启动时，KnowledgeBase 调用 `sync_manuals(dir)`，让知识库和目录内容保持一致：
 
@@ -110,14 +101,14 @@
 - 只动 `kind="manual"` 的片段；经 `/knowledge/add`、`/knowledge/upload` 上传的文档标记为 `kind="upload"`，不受同步影响。`/knowledge/upload` 也支持 HTML。
 - 单个文件出错只计入 failed，不影响其他文件。同步结果记日志：新增、更新、跳过、删除、失败的文件数和片段总数。
 
-### 2.4 切块
+### 2.3 切块
 
 `chunk_document` 由手册和上传文档共用：
 1. 按 markdown 标题分节，节内按空行分段。
 2. 同一节的段落依次合并，每块（含前缀）不超过 500 字；超长段落按句末标点切开。
 3. 每块前面加"【文件名｜最近两级标题】"前缀，如"【理想i8-用车须知｜理想i8 用车须知 / 2.车辆保养】"。标题和小节名也参与向量化，能提高命中率。
 
-### 2.5 检索
+### 2.4 检索
 
 用车顾问调用 `search_knowledge_base`，经 tool_manager 做查询改写（3 个子查询）、并行召回、去重和重排。改写和重排的模型调用关闭思考模式，实测一次手册问答约 4–6 秒：
 - 检索为空时返回 `found: false` 和"手册里没有找到相关内容，建议查看车机中的用户手册或联系售后"。

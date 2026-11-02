@@ -51,7 +51,7 @@
             <button type="submit" :disabled="searching || !query.trim()"><AppIcon name="search" />{{ searching ? '检索中' : '检索' }}</button>
           </form>
           <p v-if="errors.search" class="error-text">{{ errors.search }}</p>
-          <p v-else-if="results && !results.length" class="muted">没有检索到相关片段。手册目录为空时需要先运行 backend/manuals/fetch_manuals.py。</p>
+          <p v-else-if="results && !results.length" class="muted">没有检索到相关片段，可以换个说法再试。</p>
           <ol v-else-if="results" class="results">
             <li v-for="(r, i) in results" :key="i">
               <div class="result-head"><b>{{ r.title || '未命名片段' }}</b><span class="num muted">{{ r.score?.toFixed?.(2) }}</span></div>

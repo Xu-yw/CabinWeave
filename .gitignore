@@ -20,10 +20,6 @@ logs/
 *.log
 *.sqlite3
 backend/evaluation/结果/
-# 车辆用户手册：版权归车企，只在本地使用，目录里只提交 README.md 和抓取脚本
-backend/manuals/*
-!backend/manuals/README.md
-!backend/manuals/fetch_manuals.py
 # 本机编辑器与系统文件
 .idea/
 .vscode/
